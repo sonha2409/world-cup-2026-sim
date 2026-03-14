@@ -19,40 +19,41 @@
 | # | Date | What was done | Stopped at |
 |---|------|---------------|------------|
 | 1 | 2026-03-14 | Planning & spec | Ready to start Step 1 |
+| 2 | 2026-03-14 | Steps 1–5: setup, data layer, path calculator, UI components, pages | Ready for Step 6 (Polish) |
 
 ---
 
 ## Feature Checklist
 
 ### Step 1: Project Setup
-- [ ] Scaffold Next.js app (App Router, TypeScript, Tailwind, ESLint)
-- [ ] Configure tailwind.config.ts
-- [ ] Clean up boilerplate
-- [ ] Set up Inter font via next/font/google
+- [x] Scaffold Next.js app (App Router, TypeScript, Tailwind, ESLint)
+- [x] Configure tailwind.config.ts
+- [x] Clean up boilerplate
+- [x] Set up Inter font via next/font/google
 
 ### Step 2: Data Layer
-- [ ] `src/data/venues.ts` — 16 venues (id, name, city, country)
-- [ ] `src/data/groups.ts` — 12 groups, 48 teams (name, code, flag emoji, group)
-- [ ] `src/data/matches.ts` — 72 group stage + 32 knockout matches
-- [ ] `src/data/bracket.ts` — R32 matchups, R16/QF/SF/Final feed, 3rd-place matrix (495 combos)
+- [x] `src/data/venues.ts` — 16 venues (id, name, city, country)
+- [x] `src/data/groups.ts` — 12 groups, 48 teams (name, code, flag emoji, group)
+- [x] `src/data/matches.ts` — 72 group stage + 32 knockout matches
+- [x] `src/data/bracket.ts` — R32 matchups, R16/QF/SF/Final feed, 3rd-place matrix (495 combos)
 
 ### Step 3: Path Calculator
-- [ ] `src/lib/pathCalculator.ts` — `getTeamPaths(teamCode)` function
-- [ ] Handles 1st-place finish (single deterministic path)
-- [ ] Handles 2nd-place finish (single deterministic path)
-- [ ] Handles 3rd-place finish (multiple scenarios, deduped by venue sequence)
+- [x] `src/lib/pathCalculator.ts` — `getTeamPaths(teamCode)` function
+- [x] Handles 1st-place finish (single deterministic path)
+- [x] Handles 2nd-place finish (single deterministic path)
+- [x] Handles 3rd-place finish (multiple scenarios, deduped by venue sequence)
 
 ### Step 4: UI Components
-- [ ] `GroupCard.tsx` — group letter + 4 clickable teams
-- [ ] `TeamBadge.tsx` — flag emoji + team name
-- [ ] `PathTable.tsx` — knockout path table (rows=rounds, cols=scenarios)
-- [ ] `SearchBar.tsx` — filter teams by name
-- [ ] `PositionTabs.tsx` — tab selector: "1st" | "2nd" | "3rd"
+- [x] `GroupCard.tsx` — group letter + 4 clickable teams
+- [x] `TeamBadge.tsx` — flag emoji + team name
+- [x] `PathTable.tsx` — knockout path table (rows=rounds, cols=scenarios)
+- [x] `SearchBar.tsx` — filter teams by name
+- [x] `PositionTabs.tsx` — tab selector: "1st" | "2nd" | "3rd"
 
 ### Step 5: Pages
-- [ ] Home page (`/`) — header, search bar, 12 group cards in responsive grid
-- [ ] Team page (`/team/[code]`) — group stage matches + knockout path with tabs
-- [ ] Back navigation from team page to home
+- [x] Home page (`/`) — header, search bar, 12 group cards in responsive grid
+- [x] Team page (`/team/[code]`) — group stage matches + knockout path with tabs
+- [x] Back navigation from team page to home
 
 ### Step 6: Polish
 - [ ] Open Graph meta tags for social sharing

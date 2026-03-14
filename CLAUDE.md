@@ -56,3 +56,8 @@ Pause and let the user verify manually/visually before moving on:
 - Commit with a clear message, then push to GitHub.
 
 Do not chain multiple features without completing the full pipeline for each. Check off items in `SPEC.md` only after tests pass and the user confirms (when applicable).
+
+### 5. Session Check
+After each feature is pushed, recommend whether the user should start a new session or continue in the current one. Base the recommendation on:
+- **Continue** if the next feature is closely related (shared context, same files, builds directly on what was just done) and context usage is still low.
+- **New session** if the next feature is largely independent, touches different parts of the codebase, or the current session has accumulated significant context that may slow things down or cause confusion.
