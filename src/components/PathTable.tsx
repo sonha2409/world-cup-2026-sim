@@ -34,7 +34,7 @@ export default function PathTable({ paths }: { paths: TeamPath[] }) {
         </thead>
         <tbody>
           {allRounds.map((round, i) => (
-            <tr key={i} className="border-b border-white/5">
+            <tr key={i} className="border-b border-white/5 transition-colors duration-150 hover:bg-white/5">
               <td className="px-4 py-3 font-medium text-white whitespace-nowrap">
                 {round.round}
               </td>

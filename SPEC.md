@@ -20,6 +20,7 @@
 |---|------|---------------|------------|
 | 1 | 2026-03-14 | Planning & spec | Ready to start Step 1 |
 | 2 | 2026-03-14 | Steps 1–5: setup, data layer, path calculator, UI components, pages | Ready for Step 6 (Polish) |
+| 2 | 2026-03-14 | Step 6: OG tags, favicon, 404 page, loading states, animations | Ready for Step 7 (Deploy) |
 
 ---
 
@@ -56,11 +57,11 @@
 - [x] Back navigation from team page to home
 
 ### Step 6: Polish
-- [ ] Open Graph meta tags for social sharing
-- [ ] Favicon
-- [ ] Custom 404 page
-- [ ] Loading states
-- [ ] Subtle hover/transition animations
+- [x] Open Graph meta tags for social sharing
+- [x] Favicon
+- [x] Custom 404 page
+- [x] Loading states
+- [x] Subtle hover/transition animations
 
 ### Step 7: Deploy
 - [ ] Push to GitHub
