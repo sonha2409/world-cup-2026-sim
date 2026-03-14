@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-World Cup 2026 Path Tracker — a Next.js app that shows every possible venue-by-venue journey for any team to the final. See `SPEC.md` for the full implementation spec and progress log.
+World Cup 2026 Path Tracker & Bracket Simulator — a Next.js app that shows every possible venue-by-venue journey for any team to the final, plus an interactive bracket simulator where users can set group standings and explore knockout paths. See `SPEC.md` for the full implementation spec and progress log.
 
 ## Stack
 
@@ -24,8 +24,11 @@ npm run lint      # ESLint
 
 - `src/data/` — Hardcoded tournament data (groups, matches, venues, bracket logic)
 - `src/lib/pathCalculator.ts` — Core logic: computes all possible venue paths for a team
+- `src/lib/simulatorState.ts` — Bracket simulator state management and computation
 - `src/components/` — Reusable UI components (GroupCard, PathTable, etc.)
+- `src/components/simulator/` — Simulator UI (drag-and-drop groups, bracket tree, route highlighting)
 - `src/app/` — Next.js App Router pages (home + team detail)
+- `src/app/simulate/` — Interactive bracket simulator page
 
 ## Key Complexity
 

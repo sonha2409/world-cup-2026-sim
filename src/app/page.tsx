@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { groups } from "@/data/groups";
 import { teams } from "@/data/groups";
 import GroupCard from "@/components/GroupCard";
@@ -27,6 +28,14 @@ export default function Home() {
         <p className="mt-2 text-center text-lg text-gray-400">
           Pick a team to see every possible venue-by-venue journey to the final.
         </p>
+        <div className="mt-4 text-center">
+          <Link
+            href="/simulate"
+            className="inline-block rounded-lg bg-gold/20 px-4 py-2 text-sm font-semibold text-gold hover:bg-gold/30 transition-colors"
+          >
+            Simulate Bracket &rarr;
+          </Link>
+        </div>
 
         <div className="mt-8">
           <SearchBar onSearch={setSearchQuery} />

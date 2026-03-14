@@ -21,6 +21,7 @@
 | 1 | 2026-03-14 | Planning & spec | Ready to start Step 1 |
 | 2 | 2026-03-14 | Steps 1–5: setup, data layer, path calculator, UI components, pages | Ready for Step 6 (Polish) |
 | 2 | 2026-03-14 | Step 6: OG tags, favicon, 404 page, loading states, animations | Ready for Step 7 (Deploy) |
+| 3 | 2026-03-14 | Step 8: Bracket simulator — DnD groups, 3rd-place selector, bracket tree, SVG connectors, route highlighting | Complete |
 
 ---
 
@@ -63,6 +64,19 @@
 - [x] Loading states
 - [x] Subtle hover/transition animations
 
+### Step 8: Bracket Simulator
+- [x] `src/lib/simulatorState.ts` — state hook + bracket computation logic
+- [x] `src/app/simulate/page.tsx` — simulator page with group arrangement + bracket
+- [x] Drag-and-drop group reordering (dnd-kit)
+- [x] 3rd-place qualifier selection (8 of 12 checkboxes)
+- [x] Reset + Randomize buttons
+- [x] Two-sided bracket layout (CSS Grid, 9 columns)
+- [x] SVG connector lines with ResizeObserver
+- [x] Team route highlighting (gold glow on bracket + group section)
+- [x] Route summary strip (7-venue journey below bracket)
+- [x] Navigation link from home page
+- [x] Responsive (scrollable groups, horizontal bracket scroll on mobile)
+
 ### Step 7: Deploy
 - [ ] Push to GitHub
 - [ ] Deploy to Vercel
@@ -78,6 +92,12 @@
 - [ ] Responsive at 375px / 768px / 1024px
 - [ ] `npm run build` succeeds
 - [ ] Production deploy works
+- [ ] `/simulate` loads with all 12 groups draggable
+- [ ] Dragging teams reorders within group, bracket updates live
+- [ ] Selecting 8 third-place groups resolves 3rd-place R32 slots
+- [ ] Bracket shows correct two-sided layout with SVG connector lines
+- [ ] Clicking a team highlights their full route (group + knockout)
+- [ ] Route summary strip shows correct 7-venue journey
 
 ---
 
