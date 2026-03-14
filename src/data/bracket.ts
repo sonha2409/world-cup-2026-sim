@@ -102,6 +102,8 @@ export const bracketFeeds: Record<
   // SF
   101: { homeFrom: 97, awayFrom: 98, venueId: "att" },
   102: { homeFrom: 99, awayFrom: 100, venueId: "mercedes" },
+  // 3rd-place match
+  103: { homeFrom: 101, awayFrom: 102, venueId: "hard_rock" },
   // Final
   104: { homeFrom: 101, awayFrom: 102, venueId: "metlife" },
 };

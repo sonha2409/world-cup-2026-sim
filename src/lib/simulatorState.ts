@@ -15,7 +15,7 @@ export type GroupStandings = Record<string, Team[]>;
 
 export type BracketSlot = {
   matchNumber: number;
-  round: "R32" | "R16" | "QF" | "SF" | "Final";
+  round: "R32" | "R16" | "QF" | "SF" | "3rd" | "Final";
   homeTeam?: Team;
   awayTeam?: Team;
   homeLabel: string;
@@ -26,6 +26,7 @@ export type BracketSlot = {
 export type BracketSides = {
   left: BracketSlot[];
   right: BracketSlot[];
+  thirdPlace: BracketSlot;
   final: BracketSlot;
 };
 
@@ -138,10 +139,11 @@ export function resolveFullBracket(r32Slots: BracketSlot[]): BracketSlot[] {
     slotMap.set(s.matchNumber, s);
   }
 
-  const roundForMatch = (mn: number): "R16" | "QF" | "SF" | "Final" => {
+  const roundForMatch = (mn: number): "R16" | "QF" | "SF" | "3rd" | "Final" => {
     if (mn >= 89 && mn <= 96) return "R16";
     if (mn >= 97 && mn <= 100) return "QF";
     if (mn === 101 || mn === 102) return "SF";
+    if (mn === 103) return "3rd";
     return "Final";
   };
 
@@ -154,13 +156,10 @@ export function resolveFullBracket(r32Slots: BracketSlot[]): BracketSlot[] {
     const homeSlot = slotMap.get(feed.homeFrom);
     const awaySlot = slotMap.get(feed.awayFrom);
 
-    // For resolved teams, we can show actual names. Otherwise "W{n}"
-    const homeLabel = homeSlot?.homeTeam && homeSlot?.awayTeam
-      ? `W${feed.homeFrom}`
-      : `W${feed.homeFrom}`;
-    const awayLabel = awaySlot?.homeTeam && awaySlot?.awayTeam
-      ? `W${feed.awayFrom}`
-      : `W${feed.awayFrom}`;
+    // Match 103 uses losers of SFs, not winners
+    const prefix = feed.matchNumber === 103 ? "L" : "W";
+    const homeLabel = `${prefix}${feed.homeFrom}`;
+    const awayLabel = `${prefix}${feed.awayFrom}`;
 
     const slot: BracketSlot = {
       matchNumber: feed.matchNumber,
@@ -208,9 +207,10 @@ export function getBracketSides(fullBracket: BracketSlot[]): BracketSides {
     .map((mn) => slotMap.get(mn)!)
     .filter(Boolean);
 
+  const thirdPlace = slotMap.get(103)!;
   const final = slotMap.get(104)!;
 
-  return { left, right, final };
+  return { left, right, thirdPlace, final };
 }
 
 export function getTeamRoute(
@@ -315,7 +315,7 @@ function traceKnockoutRoute(
 
   for (const roundName of roundNames) {
     const nextEntry = Object.entries(bracketFeeds).find(
-      ([, feed]) => feed.homeFrom === currentMatch || feed.awayFrom === currentMatch,
+      ([key, feed]) => (feed.homeFrom === currentMatch || feed.awayFrom === currentMatch) && key !== "103",
     );
     if (!nextEntry) break;
 
@@ -418,6 +418,11 @@ export function useSimulatorState() {
     setSelectedTeam(null);
   }, []);
 
+  const randomizeThirdPlace = useCallback(() => {
+    const shuffledGroups = [...groups].sort(() => Math.random() - 0.5);
+    setThirdPlaceGroups(shuffledGroups.slice(0, 8));
+  }, []);
+
   return {
     standings,
     thirdPlaceGroups,
@@ -432,5 +437,6 @@ export function useSimulatorState() {
     setSelectedTeam,
     reset,
     randomize,
+    randomizeThirdPlace,
   };
 }

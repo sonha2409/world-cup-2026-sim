@@ -19,6 +19,7 @@ export default function SimulatePage() {
     setSelectedTeam,
     reset,
     randomize,
+    randomizeThirdPlace,
   } = useSimulatorState();
 
   return (
@@ -54,6 +55,7 @@ export default function SimulatePage() {
           }
           onReset={reset}
           onRandomize={randomize}
+          onRandomizeThirdPlace={randomizeThirdPlace}
         />
 
         {/* Route Summary */}

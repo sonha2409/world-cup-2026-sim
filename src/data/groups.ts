@@ -52,7 +52,7 @@ export const teams: Team[] = [
   // Group I
   { name: "France", code: "FRA", flag: "\ud83c\uddeb\ud83c\uddf7", group: "I" },
   { name: "Senegal", code: "SEN", flag: "\ud83c\uddf8\ud83c\uddf3", group: "I" },
-  { name: "Intercontinental Playoff 2", code: "IP2", flag: "\ud83c\uddf2\ud83c\udde6", group: "I" },
+  { name: "Intercontinental Playoff 2", code: "IP2", flag: "🌍", group: "I" },
   { name: "Norway", code: "NOR", flag: "\ud83c\uddf3\ud83c\uddf4", group: "I" },
 
   // Group J
@@ -63,7 +63,7 @@ export const teams: Team[] = [
 
   // Group K
   { name: "Portugal", code: "POR", flag: "\ud83c\uddf5\ud83c\uddf9", group: "K" },
-  { name: "Intercontinental Playoff 1", code: "IP1", flag: "\ud83c\uddf2\ud83c\udde6", group: "K" },
+  { name: "Intercontinental Playoff 1", code: "IP1", flag: "🌍", group: "K" },
   { name: "Uzbekistan", code: "UZB", flag: "\ud83c\uddfa\ud83c\uddff", group: "K" },
   { name: "Colombia", code: "COL", flag: "\ud83c\udde8\ud83c\uddf4", group: "K" },
 

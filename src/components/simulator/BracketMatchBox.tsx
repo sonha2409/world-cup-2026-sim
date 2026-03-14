@@ -30,6 +30,7 @@ export default function BracketMatchBox({
             highlighted ? "text-gold" : "text-white"
           }`}
         >
+          {slot.homeTeam?.flag && <span className="mr-1">{slot.homeTeam.flag}</span>}
           {slot.homeLabel}
         </div>
         <div className="text-gray-500 text-center text-[10px]">vs</div>
@@ -38,10 +39,11 @@ export default function BracketMatchBox({
             highlighted ? "text-gold" : "text-white"
           }`}
         >
+          {slot.awayTeam?.flag && <span className="mr-1">{slot.awayTeam.flag}</span>}
           {slot.awayLabel}
         </div>
       </div>
-      <div className="mt-1 text-[10px] text-gray-400 truncate">{venueName}</div>
+      <div className="mt-1 text-[10px] text-gray-400 leading-tight">{venueName}{venue?.city && `, ${venue.city}`}</div>
       <div className="text-[9px] text-gray-500">M{slot.matchNumber}</div>
     </div>
   );

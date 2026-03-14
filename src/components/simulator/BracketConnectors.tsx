@@ -9,38 +9,54 @@ type Line = {
   highlighted: boolean;
 };
 
+function getElementCenter(el: HTMLElement, container: HTMLElement) {
+  // Walk up offsetParent chain to get position relative to the container
+  let x = 0;
+  let y = 0;
+  let current: HTMLElement | null = el;
+  while (current && current !== container) {
+    x += current.offsetLeft;
+    y += current.offsetTop;
+    current = current.offsetParent as HTMLElement | null;
+  }
+  return {
+    left: x,
+    right: x + el.offsetWidth,
+    centerY: y + el.offsetHeight / 2,
+    width: el.offsetWidth,
+    height: el.offsetHeight,
+  };
+}
+
 function computeLines(
   container: HTMLElement,
   highlightedMatches: Set<number>,
 ): Line[] {
   const lines: Line[] = [];
-  const containerRect = container.getBoundingClientRect();
 
   for (const [matchNumStr, feed] of Object.entries(bracketFeeds)) {
     const matchNum = parseInt(matchNumStr);
-    const targetEl = container.querySelector(`[data-match="${matchNum}"]`);
-    const homeEl = container.querySelector(`[data-match="${feed.homeFrom}"]`);
-    const awayEl = container.querySelector(`[data-match="${feed.awayFrom}"]`);
+    // Skip 3rd-place match lines — it sits below the Final and is self-evident
+    if (matchNum === 103) continue;
+    const targetEl = container.querySelector(`[data-match="${matchNum}"]`) as HTMLElement | null;
+    const homeEl = container.querySelector(`[data-match="${feed.homeFrom}"]`) as HTMLElement | null;
+    const awayEl = container.querySelector(`[data-match="${feed.awayFrom}"]`) as HTMLElement | null;
 
     if (!targetEl || !homeEl || !awayEl) continue;
 
-    const targetRect = targetEl.getBoundingClientRect();
-    const homeRect = homeEl.getBoundingClientRect();
-    const awayRect = awayEl.getBoundingClientRect();
+    const target = getElementCenter(targetEl, container);
+    const home = getElementCenter(homeEl, container);
+    const away = getElementCenter(awayEl, container);
 
     // Determine direction: if source is to the left, connect right edge to left edge
-    const homeIsLeft = homeRect.left < targetRect.left;
+    const homeIsLeft = home.left < target.left;
 
-    const tX = homeIsLeft
-      ? targetRect.left - containerRect.left
-      : targetRect.right - containerRect.left;
-    const tY = targetRect.top - containerRect.top + targetRect.height / 2;
+    const tX = homeIsLeft ? target.left : target.right;
+    const tY = target.centerY;
 
     // Home feed line
-    const hX = homeIsLeft
-      ? homeRect.right - containerRect.left
-      : homeRect.left - containerRect.left;
-    const hY = homeRect.top - containerRect.top + homeRect.height / 2;
+    const hX = homeIsLeft ? home.right : home.left;
+    const hY = home.centerY;
     const midXH = (hX + tX) / 2;
 
     lines.push({
@@ -51,10 +67,8 @@ function computeLines(
     });
 
     // Away feed line
-    const aX = homeIsLeft
-      ? awayRect.right - containerRect.left
-      : awayRect.left - containerRect.left;
-    const aY = awayRect.top - containerRect.top + awayRect.height / 2;
+    const aX = homeIsLeft ? away.right : away.left;
+    const aY = away.centerY;
     const midXA = (aX + tX) / 2;
 
     lines.push({
@@ -103,7 +117,7 @@ export default function BracketConnectors({
 
   return (
     <svg
-      className="absolute inset-0 pointer-events-none"
+      className="absolute inset-0 pointer-events-none z-0"
       style={{ width: "100%", height: "100%" }}
     >
       {lines.map((line) => (

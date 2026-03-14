@@ -78,9 +78,9 @@
 - [x] Responsive (scrollable groups, horizontal bracket scroll on mobile)
 
 ### Step 7: Deploy
-- [ ] Push to GitHub
-- [ ] Deploy to Vercel
-- [ ] Verify production URL
+- [x] Push to GitHub
+- [x] Deploy to Vercel
+- [x] Verify production URL
 
 ### Verification
 - [ ] `npm run dev` starts without errors

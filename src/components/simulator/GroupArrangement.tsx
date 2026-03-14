@@ -25,6 +25,7 @@ export default function GroupArrangement({
   onSelectTeam,
   onReset,
   onRandomize,
+  onRandomizeThirdPlace,
 }: {
   standings: GroupStandings;
   thirdPlaceGroups: string[];
@@ -34,6 +35,7 @@ export default function GroupArrangement({
   onSelectTeam: (code: string) => void;
   onReset: () => void;
   onRandomize: () => void;
+  onRandomizeThirdPlace: () => void;
 }) {
   const pointerSensor = useSensor(PointerSensor, {
     activationConstraint: { distance: 5 },
@@ -103,6 +105,7 @@ export default function GroupArrangement({
         <ThirdPlaceSelector
           selectedGroups={thirdPlaceGroups}
           onToggle={onToggleThirdPlace}
+          onRandomize={onRandomizeThirdPlace}
         />
       </div>
     </div>
